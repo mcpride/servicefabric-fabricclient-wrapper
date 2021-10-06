@@ -348,5 +348,7 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
-/src/MS.Extensions.Fabric.FabricClient/*.licenseheader
-/src/MS.Extensions.Fabric.FabricClient/doc/netstandard2.0/MS.Extensions.Fabric.FabricClient.xml
+
+# Custom
+*.licenseheader
+MS.Extensions.Fabric.FabricClient.xml
