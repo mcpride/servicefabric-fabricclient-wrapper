@@ -1,0 +1,17 @@
+<Project>
+  <PropertyGroup>
+    <Authors>Marco Stolze</Authors>
+    <Company />
+    <Product />
+    <CopyrightYear>2021</CopyrightYear>
+    <Copyright>Copyright © $(CopyrightYear) Marco Stolze (alias mcpride).</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/mcpride/servicefabric-fabricclient-wrapper.git</RepositoryUrl>
+    <RepositoryCommit Condition="$(RepositoryCommit) == '' Or $(RepositoryCommit) == '*Undefined*'">main</RepositoryCommit>
+    <RepositoryBranch Condition="$(RepositoryBranch) == '' Or $(RepositoryBranch) == '*Undefined*'">main</RepositoryBranch>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl Condition="$(RepositoryCommit) != '' And $(RepositoryCommit) != '*Undefined*'">https://github.com/mcpride/servicefabric-fabricclient-wrapper/blob/$(RepositoryCommit)/README.md</PackageProjectUrl>
+    <PackageReleaseNotes>(Please write the package release notes in "./release-notes.md")</PackageReleaseNotes>
+    <PackageTags>servicefabric</PackageTags>
+  </PropertyGroup>
+</Project>
