@@ -1,0 +1,52 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>MS.Extensions</RootNamespace>
+    <PackageReleaseNotes>(Please write the package release notes in "./release-notes.md")</PackageReleaseNotes>
+    <PackageTags>servicefabric</PackageTags>
+    <AssemblyVersion>7.1.458.0</AssemblyVersion>
+    <FileVersion>7.1.458.0</FileVersion>
+    <VersionPrefix>7.1.458</VersionPrefix>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">true</GeneratePackageOnBuild>
+    <Authors>Marco Stolze</Authors>
+    <Company />
+    <Product />
+    <Copyright>Copyright (c) 2021 Marco Stolze</Copyright>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageProjectUrl Condition="$(RepositoryCommit) != '' And $(RepositoryCommit) != '*Undefined*'">https://github.com/mcpride/servicefabric-fabricclient-wrapper/blob/$(RepositoryCommit)/README.md</PackageProjectUrl>
+    <RepositoryBranch Condition="$(RepositoryBranch) == '' Or $(RepositoryBranch) == '*Undefined*'">main</RepositoryBranch>
+    <RepositoryUrl>https://github.com/mcpride/servicefabric-fabricclient-wrapper.git</RepositoryUrl>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)'=='Release'">
+    <DocumentationFile>doc/$(TargetFramework)/$(AssemblyName).xml</DocumentationFile>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+  </PropertyGroup>
+
+  <Target Name="PreparePackageReleaseNotesFromFile" BeforeTargets="GenerateNuspec">
+    <ReadLinesFromFile File="release-notes.md">
+      <Output TaskParameter="Lines" ItemName="ReleaseNoteLines" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <PackageReleaseNotes>@(ReleaseNoteLines, '%0a')</PackageReleaseNotes>
+    </PropertyGroup>
+  </Target>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.ServiceFabric" Version="7.1.458" />
+    <PackageReference Include="Microsoft.SourceLink.Github" Version="1.0.0">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\LICENSE">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
+
+</Project>
