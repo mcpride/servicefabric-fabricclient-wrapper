@@ -10,46 +10,57 @@ namespace MS.Extensions.Fabric.Query
 {
     internal class ApplicationWrapper : IApplication
     {
-        internal readonly Application Application;
-        public Uri ApplicationName => Application.ApplicationName;
-        public string ApplicationTypeName => Application.ApplicationTypeName;
-        public string ApplicationTypeVersion => Application.ApplicationTypeVersion;
-        public ApplicationStatus ApplicationStatus => Application.ApplicationStatus;
-        public HealthState HealthState => Application.HealthState;
-        public ApplicationParameterList ApplicationParameters => Application.ApplicationParameters;
-        public ApplicationDefinitionKind ApplicationDefinitionKind => Application.ApplicationDefinitionKind;
+        internal readonly Application Item;
+        public Uri ApplicationName => Item.ApplicationName;
+        public string ApplicationTypeName => Item.ApplicationTypeName;
+        public string ApplicationTypeVersion => Item.ApplicationTypeVersion;
+        public ApplicationStatus ApplicationStatus => Item.ApplicationStatus;
+        public HealthState HealthState => Item.HealthState;
+        public ApplicationParameterList ApplicationParameters => Item.ApplicationParameters;
+        public ApplicationDefinitionKind ApplicationDefinitionKind => Item.ApplicationDefinitionKind;
         [Obsolete("Use ApplicationUpgradeProgress.")]
-        public string UpgradeTypeVersion => Application.UpgradeTypeVersion;
+        public string UpgradeTypeVersion => Item.UpgradeTypeVersion;
         [Obsolete("Use ApplicationUpgradeProgress.")]
-        public ApplicationParameterList UpgradeParameters => Application.UpgradeParameters;
+        public ApplicationParameterList UpgradeParameters => Item.UpgradeParameters;
         public ManagedApplicationIdentityDescription ManagedApplicationIdentity
         {
-            get => Application.ManagedApplicationIdentity;
-            set => Application.ManagedApplicationIdentity = value;
+            get => Item.ManagedApplicationIdentity;
+            set => Item.ManagedApplicationIdentity = value;
         }
 
-        public ApplicationWrapper(Application application)
+        public ApplicationWrapper(Application item)
         {
-            Application = application ?? throw new ArgumentNullException(nameof(application));
+            Item = item ?? throw new ArgumentNullException(nameof(item));
+        }
+
+        public static bool operator ==(ApplicationWrapper value1, ApplicationWrapper value2)
+        {
+            if ((object)value1 == (object)value2) return true;
+            return (object)value1 != null && (object)value2 != null && value1.Item == value2.Item;
+        }
+
+        public static bool operator !=(ApplicationWrapper value1, ApplicationWrapper value2)
+        {
+            return !(value1 == value2);
         }
 
         public override bool Equals(object obj)
         {
             if (obj is ApplicationWrapper wrapper)
             {
-                return Application.Equals(wrapper.Application);
+                return Item.Equals(wrapper.Item);
             }
             return base.Equals(obj);
         }
 
         public override int GetHashCode()
         {
-            return Application.GetHashCode();
+            return Item.GetHashCode();
         }
 
         public override string ToString()
         {
-            return Application.ToString();
+            return Item.ToString();
         }
     }
 }

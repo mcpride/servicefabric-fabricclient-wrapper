@@ -11,34 +11,35 @@ namespace MS.Extensions.Fabric.Query
 {
     internal class ApplicationListWrapper : IApplicationList
     {
-        private readonly ApplicationList _applications;
+        private readonly ApplicationList _items;
 
         public IApplication this[int index]
         {
-            get => new ApplicationWrapper(_applications[index]);
-            set => _applications[index] = value.Unwrap<IApplication, ApplicationWrapper>().Application;
+            get => new ApplicationWrapper(_items[index]);
+            set => _items[index] = value.Unwrap<IApplication, ApplicationWrapper>().Item;
         }
 
         public string ContinuationToken
         {
-            get => _applications.ContinuationToken;
-            set => _applications.ContinuationToken = value;
+            get => _items.ContinuationToken;
+            set => _items.ContinuationToken = value;
         }
 
-        public int Count => _applications.Count;
+        public int Count => _items.Count;
 
-        public bool IsReadOnly => _applications.IsReadOnly;
+        public bool IsReadOnly => _items.IsReadOnly;
 
-        public ApplicationListWrapper(ApplicationList applications)
+        public ApplicationListWrapper(ApplicationList items)
         {
-            _applications = applications ?? throw new ArgumentNullException(nameof(applications));
+            _items = items ?? throw new ArgumentNullException(nameof(items));
         }
 
         public IEnumerator<IApplication> GetEnumerator()
         {
-            var list = new List<IApplication>();
-            list.AddRange(_applications.Select(item => new ApplicationWrapper(item)).Cast<IApplication>());
-            return list.GetEnumerator();
+            foreach (var item in _items)
+            {
+                yield return new ApplicationWrapper(item);
+            }
         }
 
         IEnumerator IEnumerable.GetEnumerator()
@@ -48,44 +49,44 @@ namespace MS.Extensions.Fabric.Query
 
         public void Add(IApplication item)
         {
-            _applications.Add(item.Unwrap<IApplication, ApplicationWrapper>().Application);
+            _items.Add(item.Unwrap<IApplication, ApplicationWrapper>().Item);
         }
 
         public void Clear()
         {
-            _applications.Clear();
+            _items.Clear();
         }
 
         public bool Contains(IApplication item)
         {
-            return _applications.Contains(item.Unwrap<IApplication, ApplicationWrapper>().Application);
+            return _items.Contains(item.Unwrap<IApplication, ApplicationWrapper>().Item);
         }
 
         public void CopyTo(IApplication[] array, int arrayIndex)
         {
-            _applications.CopyTo(
-                array.Select(item => item.Unwrap<IApplication, ApplicationWrapper>().Application).ToArray(), 
+            _items.CopyTo(
+                array.Select(item => item.Unwrap<IApplication, ApplicationWrapper>().Item).ToArray(), 
                 arrayIndex);
         }
 
         public bool Remove(IApplication item)
         {
-            return _applications.Remove(item.Unwrap<IApplication, ApplicationWrapper>().Application);
+            return _items.Remove(item.Unwrap<IApplication, ApplicationWrapper>().Item);
         }
 
         public int IndexOf(IApplication item)
         {
-            return _applications.IndexOf(item.Unwrap<IApplication, ApplicationWrapper>().Application);
+            return _items.IndexOf(item.Unwrap<IApplication, ApplicationWrapper>().Item);
         }
 
         public void Insert(int index, IApplication item)
         {
-            _applications.Insert(index, item.Unwrap<IApplication, ApplicationWrapper>().Application);
+            _items.Insert(index, item.Unwrap<IApplication, ApplicationWrapper>().Item);
         }
 
         public void RemoveAt(int index)
         {
-            _applications.RemoveAt(index);
+            _items.RemoveAt(index);
         }
     }
 }

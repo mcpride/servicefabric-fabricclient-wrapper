@@ -1,6 +1,7 @@
 ﻿// MIT License
 // Copyright (c) 2021 Marco Stolze
 
+using System;
 using System.Fabric.Query;
 using System.Threading.Tasks;
 using MS.Extensions.Fabric.Query;
@@ -9,15 +10,15 @@ namespace MS.Extensions.Fabric
 {
     public interface IQueryClient
     {
-        //Task<NodeList> GetNodeListAsync();
-        //Task<NodeList> GetNodeListAsync(string nodeNameFilter);
-        //Task<NodeList> GetNodeListAsync(string nodeNameFilter, string continuationToken);
-        //Task<NodeList> GetNodeListAsync(string nodeNameFilter, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<NodeList> GetNodeListAsync(string nodeNameFilter, string continuationToken, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<NodeList> GetNodeListAsync(string nodeNameFilter, NodeStatusFilter nodeStatusFilter, string continuationToken, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<NodeList> GetNodePagedListAsync();
-        //Task<NodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription);
-        //Task<NodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription, TimeSpan timeout, CancellationToken cancellationToken);
+        Task<INodeList> GetNodeListAsync();
+        //Task<INodeList> GetNodeListAsync(string nodeNameFilter);
+        //Task<INodeList> GetNodeListAsync(string nodeNameFilter, string continuationToken);
+        //Task<INodeList> GetNodeListAsync(string nodeNameFilter, TimeSpan timeout, CancellationToken cancellationToken);
+        //Task<INodeList> GetNodeListAsync(string nodeNameFilter, string continuationToken, TimeSpan timeout, CancellationToken cancellationToken);
+        //Task<INodeList> GetNodeListAsync(string nodeNameFilter, NodeStatusFilter nodeStatusFilter, string continuationToken, TimeSpan timeout, CancellationToken cancellationToken);
+        //Task<INodeList> GetNodePagedListAsync();
+        //Task<INodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription);
+        //Task<INodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription, TimeSpan timeout, CancellationToken cancellationToken);
         //Task<ApplicationTypeList> GetApplicationTypeListAsync();
         //Task<ApplicationTypeList> GetApplicationTypeListAsync(string applicationTypeNameFilter);
         //Task<ApplicationTypeList> GetApplicationTypeListAsync(string applicationTypeNameFilter, TimeSpan timeout, CancellationToken cancellationToken);
@@ -37,7 +38,7 @@ namespace MS.Extensions.Fabric
         //Task<IApplicationList> GetApplicationListAsync(Uri applicationNameFilter, string continuationToken, TimeSpan timeout, CancellationToken cancellationToken);
         //Task<IApplicationList> GetApplicationPagedListAsync(ApplicationQueryDescription applicationQueryDescription);
         //Task<IApplicationList> GetApplicationPagedListAsync(ApplicationQueryDescription applicationQueryDescription, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<ServiceList> GetServiceListAsync(Uri applicationName);
+        Task<IServiceList> GetServiceListAsync(Uri applicationName);
         //Task<ServiceList> GetServiceListAsync(Uri applicationName, Uri serviceNameFilter);
         //Task<ServiceList> GetServiceListAsync(Uri applicationName, Uri serviceNameFilter, string continuationToken);
         //Task<ServiceList> GetServiceListAsync(Uri applicationName, Uri serviceNameFilter, TimeSpan timeout, CancellationToken cancellationToken);

@@ -48,14 +48,14 @@ namespace MS.Extensions.Fabric
         public FabricClientWrapper(FabricClient fabricClient)
         {
             _fabricClient = fabricClient ?? throw new ArgumentNullException(nameof(fabricClient));
-            PropertyManager = new PropertyManagementClientWrapper(_fabricClient);
+            PropertyManager = new PropertyManagementClientWrapper(_fabricClient.PropertyManager);
             ServiceManager = new ServiceManagementClientWrapper(_fabricClient);
             ServiceGroupManager = new ServiceGroupManagementClientWrapper(_fabricClient);
             ApplicationManager = new ApplicationManagementClientWrapper(_fabricClient);
             ComposeDeploymentManager = new ComposeDeploymentClientWrapper();
             ClusterManager = new ClusterManagementClientWrapper(_fabricClient);
             RepairManager = new RepairManagementClientWrapper(_fabricClient);
-            QueryManager = new QueryClientWrapper(_fabricClient);
+            QueryManager = new QueryClientWrapper(_fabricClient.QueryManager);
             HealthManager = new HealthClientWrapper(_fabricClient);
             InfrastructureManager = new InfrastructureServiceClientWrapper(_fabricClient);
             TestManager = new TestManagementClientWrapper(_fabricClient);
