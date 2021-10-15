@@ -6,7 +6,7 @@ using System.Fabric;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace MS.Extensions.Fabric
+namespace MS.Extensions.Fabric.Tools
 {
     internal static class ExceptionsHelper
     {

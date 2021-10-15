@@ -3,7 +3,7 @@
 
 using System;
 
-namespace MS.Extensions.Fabric
+namespace MS.Extensions.Tools
 {
     internal static class UnwrapHelper
     {

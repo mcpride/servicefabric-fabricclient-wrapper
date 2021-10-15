@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Fabric.Query;
 using System.Linq;
+using MS.Extensions.Tools;
 
 namespace MS.Extensions.Fabric.Query
 {
@@ -74,7 +75,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void CopyTo(IService[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => UnwrapHelper.Unwrap<IService, ServiceWrapper>(item)
+            _items.CopyTo(array.Select(item => item.Unwrap<IService, ServiceWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }

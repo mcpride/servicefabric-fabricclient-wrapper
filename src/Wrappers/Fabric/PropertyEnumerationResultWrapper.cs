@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Fabric;
 using System.Linq;
+using MS.Extensions.Tools;
 
 namespace MS.Extensions.Fabric
 {
