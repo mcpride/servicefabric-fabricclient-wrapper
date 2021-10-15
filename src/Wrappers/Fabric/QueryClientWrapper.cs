@@ -25,6 +25,20 @@ namespace MS.Extensions.Fabric
             return items == null ? null : new NodeListWrapper(items);
         }
 
+        /// <inheritdoc />
+        public async Task<IApplicationTypeList> GetApplicationTypeListAsync()
+        {
+            var items = await _client.GetApplicationTypeListAsync();
+            return items == null ? null : new ApplicationTypeListWrapper(items);
+        }
+
+        /// <inheritdoc />
+        public async Task<IApplicationTypePagedList> GetApplicationTypePagedListAsync()
+        {
+            var items = await _client.GetApplicationTypePagedListAsync();
+            return items == null ? null : new ApplicationTypePagedListWrapper(items);
+        }
+
         ///<inheritdoc/>
         public async Task<IApplicationList> GetApplicationListAsync()
         {
@@ -37,6 +51,13 @@ namespace MS.Extensions.Fabric
         {
             var items = await _client.GetServiceListAsync(applicationName);
             return items == null ? null : new ServiceListWrapper(items);
+        }
+
+        /// <inheritdoc />
+        public async Task<IServicePartitionList> GetPartitionListAsync(Uri serviceName)
+        {
+            var items = await _client.GetPartitionListAsync(serviceName);
+            return items == null ? null : new ServicePartitionListWrapper(items);
         }
     }
 }

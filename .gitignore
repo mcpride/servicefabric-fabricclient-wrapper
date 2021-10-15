@@ -352,3 +352,5 @@ MigrationBackup/
 # Custom
 *.licenseheader
 MS.Extensions.Fabric.FabricClient.xml
+/doc/class-dependencies.md
+/doc/type-dependencies.md

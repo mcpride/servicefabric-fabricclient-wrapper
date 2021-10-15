@@ -25,7 +25,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Fabric.FabricClient\MS.Extensions.Fabric.FabricClient.csproj" />
+    <ProjectReference Include="..\..\Abstractions\MS.Extensions.Fabric.FabricClient.Abstractions.csproj" />
+    <ProjectReference Include="..\..\Wrappers\MS.Extensions.Fabric.FabricClient.Wrappers.csproj" />
   </ItemGroup>
 
 </Project>

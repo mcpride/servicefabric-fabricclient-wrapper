@@ -6,7 +6,7 @@ using System.Fabric;
 
 namespace MS.Extensions.Fabric
 {
-    internal class InfrastructureServiceClientWrapper : IInfrastructureServiceClient
+    public class InfrastructureServiceClientWrapper : IInfrastructureServiceClient
     {
         // ReSharper disable once NotAccessedField.Local
         private readonly FabricClient _fabricClient;

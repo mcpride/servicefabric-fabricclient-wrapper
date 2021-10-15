@@ -19,10 +19,10 @@ namespace MS.Extensions.Fabric
         //Task<INodeList> GetNodePagedListAsync();
         //Task<INodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription);
         //Task<INodeList> GetNodePagedListAsync(NodeQueryDescription queryDescription, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<ApplicationTypeList> GetApplicationTypeListAsync();
+        Task<IApplicationTypeList> GetApplicationTypeListAsync();
         //Task<ApplicationTypeList> GetApplicationTypeListAsync(string applicationTypeNameFilter);
         //Task<ApplicationTypeList> GetApplicationTypeListAsync(string applicationTypeNameFilter, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<ApplicationTypePagedList> GetApplicationTypePagedListAsync();
+        Task<IApplicationTypePagedList> GetApplicationTypePagedListAsync();
         //Task<ApplicationTypePagedList> GetApplicationTypePagedListAsync(PagedApplicationTypeQueryDescription queryDescription);
         //Task<ApplicationTypePagedList> GetApplicationTypePagedListAsync(PagedApplicationTypeQueryDescription queryDescription, TimeSpan timeout, CancellationToken cancellationToken);
         //Task<ServiceTypeList> GetServiceTypeListAsync(string applicationTypeName, string applicationTypeVersion);
@@ -48,7 +48,7 @@ namespace MS.Extensions.Fabric
         //Task<ServiceGroupMemberList> GetServiceGroupMemberListAsync(Uri applicationName);
         //Task<ServiceGroupMemberList> GetServiceGroupMemberListAsync(Uri applicationName, Uri serviceNameFilter);
         //Task<ServiceGroupMemberList> GetServiceGroupMemberListAsync(Uri applicationName, Uri serviceNameFilter, TimeSpan timeout, CancellationToken cancellationToken);
-        //Task<ServicePartitionList> GetPartitionListAsync(Uri serviceName);
+        Task<IServicePartitionList> GetPartitionListAsync(Uri serviceName);
         //Task<ServicePartitionList> GetPartitionListAsync(Uri serviceName, string continuationToken);
         //Task<ServicePartitionList> GetPartitionListAsync(Uri serviceName, Guid? partitionIdFilter);
         //Task<ServicePartitionList> GetPartitionListAsync(Uri serviceName, Guid? partitionIdFilter, TimeSpan timeout, CancellationToken cancellationToken);
