@@ -18,7 +18,7 @@ namespace MS.Extensions.Fabric.Query
         public INode this[int index]
         {
             get => new NodeWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<INode, NodeWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<NodeWrapper>().Item;
         }
 
         /// <inheritdoc />
@@ -57,7 +57,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(INode item)
         {
-            _items.Add(item.Unwrap<INode, NodeWrapper>().Item);
+            _items.Add(item.UnwrapTo<NodeWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -69,13 +69,13 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(INode item)
         {
-            return _items.Contains(item.Unwrap<INode, NodeWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<NodeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(INode[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => UnwrapHelper.Unwrap<INode, NodeWrapper>(item)
+            _items.CopyTo(array.Select(item => UnwrapHelper.UnwrapTo<NodeWrapper>(item)
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -83,19 +83,19 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(INode item)
         {
-            return _items.Remove(item.Unwrap<INode, NodeWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<NodeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(INode item)
         {
-            return _items.IndexOf(item.Unwrap<INode, NodeWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<NodeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, INode item)
         {
-            _items.Insert(index, item.Unwrap<INode, NodeWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<NodeWrapper>().Item);
         }
 
         /// <inheritdoc />

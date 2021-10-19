@@ -33,4 +33,8 @@
     <ProjectReference Include="..\Abstractions\MS.Extensions.Fabric.FabricClient.Abstractions.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <InternalsVisibleTo Include="MS.Extensions.Fabric.FabricClient.UnitTests" />
+  </ItemGroup>
+
 </Project>

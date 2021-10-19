@@ -17,7 +17,7 @@ namespace MS.Extensions.Fabric.Query
         public IApplication this[int index]
         {
             get => new ApplicationWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<IApplication, ApplicationWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<ApplicationWrapper>().Item;
         }
 
         public string ContinuationToken
@@ -50,7 +50,7 @@ namespace MS.Extensions.Fabric.Query
 
         public void Add(IApplication item)
         {
-            _items.Add(item.Unwrap<IApplication, ApplicationWrapper>().Item);
+            _items.Add(item.UnwrapTo<ApplicationWrapper>().Item);
         }
 
         public void Clear()
@@ -60,29 +60,29 @@ namespace MS.Extensions.Fabric.Query
 
         public bool Contains(IApplication item)
         {
-            return _items.Contains(item.Unwrap<IApplication, ApplicationWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<ApplicationWrapper>().Item);
         }
 
         public void CopyTo(IApplication[] array, int arrayIndex)
         {
             _items.CopyTo(
-                array.Select(item => item.Unwrap<IApplication, ApplicationWrapper>().Item).ToArray(), 
+                array.Select(item => item.UnwrapTo<ApplicationWrapper>().Item).ToArray(), 
                 arrayIndex);
         }
 
         public bool Remove(IApplication item)
         {
-            return _items.Remove(item.Unwrap<IApplication, ApplicationWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<ApplicationWrapper>().Item);
         }
 
         public int IndexOf(IApplication item)
         {
-            return _items.IndexOf(item.Unwrap<IApplication, ApplicationWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<ApplicationWrapper>().Item);
         }
 
         public void Insert(int index, IApplication item)
         {
-            _items.Insert(index, item.Unwrap<IApplication, ApplicationWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<ApplicationWrapper>().Item);
         }
 
         public void RemoveAt(int index)

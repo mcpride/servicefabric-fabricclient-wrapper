@@ -24,7 +24,7 @@ namespace MS.Extensions.Fabric.Query
         public INodeDeactivationTask this[int index]
         {
             get => new NodeDeactivationTaskWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<NodeDeactivationTaskWrapper>().Item;
         }
 
         public NodeDeactivationTaskListWrapper(IList<NodeDeactivationTask> items)
@@ -50,7 +50,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(INodeDeactivationTask item)
         {
-            _items.Add(item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+            _items.Add(item.UnwrapTo<NodeDeactivationTaskWrapper>()
                 .Item);
         }
 
@@ -63,7 +63,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(INodeDeactivationTask item)
         {
-            return _items.Contains(item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+            return _items.Contains(item.UnwrapTo<NodeDeactivationTaskWrapper>()
                 .Item);
         }
 
@@ -71,7 +71,7 @@ namespace MS.Extensions.Fabric.Query
         public void CopyTo(INodeDeactivationTask[] array, int arrayIndex)
         {
             _items.CopyTo(
-                array.Select(item => item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+                array.Select(item => item.UnwrapTo<NodeDeactivationTaskWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -79,21 +79,21 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(INodeDeactivationTask item)
         {
-            return _items.Remove(item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+            return _items.Remove(item.UnwrapTo<NodeDeactivationTaskWrapper>()
                 .Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(INodeDeactivationTask item)
         {
-            return _items.IndexOf(item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+            return _items.IndexOf(item.UnwrapTo<NodeDeactivationTaskWrapper>()
                 .Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, INodeDeactivationTask item)
         {
-            _items.Insert(index, item.Unwrap<INodeDeactivationTask, NodeDeactivationTaskWrapper>()
+            _items.Insert(index, item.UnwrapTo<NodeDeactivationTaskWrapper>()
                 .Item);
         }
 

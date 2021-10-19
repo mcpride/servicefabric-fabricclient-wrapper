@@ -12,7 +12,7 @@ namespace MS.Extensions.Fabric.Query
         internal readonly NodeDeactivationTask Item;
 
         /// <inheritdoc />
-        public INodeDeactivationTaskId TaskId => new NodeDeactivationTaskIdWrapper(Item.TaskId);
+        public INodeDeactivationTaskId TaskId => Item.TaskId == null ? null : new NodeDeactivationTaskIdWrapper(Item.TaskId);
 
         /// <inheritdoc />
         public NodeDeactivationIntent Intent => Item.Intent;

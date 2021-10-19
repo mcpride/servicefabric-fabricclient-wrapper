@@ -25,7 +25,7 @@ namespace MS.Extensions.Fabric.Query
         public IServiceType this[int index]
         {
             get => new ServiceTypeWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<IServiceType, ServiceTypeWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<ServiceTypeWrapper>().Item;
         }
 
         public ServiceTypeListWrapper(ServiceTypeList items)
@@ -51,7 +51,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(IServiceType item)
         {
-            _items.Add(item.Unwrap<IServiceType, ServiceTypeWrapper>().Item);
+            _items.Add(item.UnwrapTo<ServiceTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -63,13 +63,13 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(IServiceType item)
         {
-            return _items.Contains(item.Unwrap<IServiceType, ServiceTypeWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<ServiceTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(IServiceType[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => item.Unwrap<IServiceType, ServiceTypeWrapper>()
+            _items.CopyTo(array.Select(item => item.UnwrapTo<ServiceTypeWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -77,19 +77,19 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(IServiceType item)
         {
-            return _items.Remove(item.Unwrap<IServiceType, ServiceTypeWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<ServiceTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(IServiceType item)
         {
-            return _items.IndexOf(item.Unwrap<IServiceType, ServiceTypeWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<ServiceTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, IServiceType item)
         {
-            _items.Insert(index, item.Unwrap<IServiceType, ServiceTypeWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<ServiceTypeWrapper>().Item);
         }
 
         /// <inheritdoc />

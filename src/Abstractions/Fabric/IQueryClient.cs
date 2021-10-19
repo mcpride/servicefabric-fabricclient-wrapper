@@ -12,6 +12,7 @@ namespace MS.Extensions.Fabric
 {
     public interface IQueryClient
     {
+        // ReSharper disable UnusedMember.Global
         Task<INodeList> GetNodeListAsync();
         Task<INodeList> GetNodeListAsync(string nodeNameFilter);
         Task<INodeList> GetNodeListAsync(string nodeNameFilter, string continuationToken);
@@ -109,5 +110,6 @@ namespace MS.Extensions.Fabric
         //Task<ApplicationLoadInformation> GetApplicationLoadInformationAsync(string applicationName, TimeSpan timeout, CancellationToken cancellationToken);
         //Task<ServiceNameResult> GetServiceNameAsync(Guid partitionId, TimeSpan timeout, CancellationToken cancellationToken);
         //Task<ApplicationNameResult> GetApplicationNameAsync(Uri serviceName, TimeSpan timeout, CancellationToken cancellationToken);
+        // ReSharper restore UnusedMember.Global
     }
 }

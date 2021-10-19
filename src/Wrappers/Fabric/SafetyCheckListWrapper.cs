@@ -24,7 +24,7 @@ namespace MS.Extensions.Fabric
         public ISafetyCheck this[int index]
         {
             get => new SafetyCheckWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<SafetyCheckWrapper>().Item;
         }
 
         public SafetyCheckListWrapper(IList<SafetyCheck> items)
@@ -50,7 +50,7 @@ namespace MS.Extensions.Fabric
         /// <inheritdoc />
         public void Add(ISafetyCheck item)
         {
-            _items.Add(item.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item);
+            _items.Add(item.UnwrapTo<SafetyCheckWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -62,13 +62,13 @@ namespace MS.Extensions.Fabric
         /// <inheritdoc />
         public bool Contains(ISafetyCheck item)
         {
-            return _items.Contains(item.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<SafetyCheckWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(ISafetyCheck[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => item.Unwrap<ISafetyCheck, SafetyCheckWrapper>()
+            _items.CopyTo(array.Select(item => item.UnwrapTo<SafetyCheckWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -76,19 +76,19 @@ namespace MS.Extensions.Fabric
         /// <inheritdoc />
         public bool Remove(ISafetyCheck item)
         {
-            return _items.Remove(item.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<SafetyCheckWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(ISafetyCheck item)
         {
-            return _items.IndexOf(item.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<SafetyCheckWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, ISafetyCheck item)
         {
-            _items.Insert(index, item.Unwrap<ISafetyCheck, SafetyCheckWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<SafetyCheckWrapper>().Item);
         }
 
         /// <inheritdoc />

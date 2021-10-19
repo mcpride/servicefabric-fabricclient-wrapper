@@ -7,21 +7,27 @@ namespace MS.Extensions.Tools
 {
     internal static class UnwrapHelper
     {
-        public static bool TryUnwrap<TWrapped, TUnwrapped>(this TWrapped wrapped, out TUnwrapped unwrapped)
+        public static bool TryUnwrapTo<TUnwrapped>(this object wrapped, out TUnwrapped unwrapped)
         {
-            unwrapped = default;
-            var d = default(TWrapped);
-            if (wrapped.Equals(d)) return true;
-            if (!(wrapped is TUnwrapped value)) return false;
+            if (wrapped == null)
+            {
+                unwrapped = default;
+                return true;
+            }
+            if (!(wrapped is TUnwrapped value))
+            {
+                unwrapped = default;
+                return false;
+            }
             unwrapped = value;
             return true;
         }
 
-        public static TUnwrapped Unwrap<TWrapped, TUnwrapped>(this TWrapped wrapped)
+        public static TUnwrapped UnwrapTo<TUnwrapped>(this object wrapped)
         {
-            if (!TryUnwrap<TWrapped, TUnwrapped>(wrapped, out var unwrapped))
+            if (!TryUnwrapTo<TUnwrapped>(wrapped, out var unwrapped))
             {
-                throw new InvalidOperationException($"Cannot unwrap {nameof(TWrapped)} to {nameof(TUnwrapped)}!");
+                throw new InvalidOperationException($"Cannot unwrap to {nameof(TUnwrapped)}!");
             }
             return unwrapped;
         }

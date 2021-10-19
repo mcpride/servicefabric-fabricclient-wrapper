@@ -65,7 +65,7 @@ namespace MS.Extensions.Fabric.Query
         public BigInteger NodeInstanceId => Item.NodeInstanceId;
 
         /// <inheritdoc />
-        public INodeDeactivationResult NodeDeactivationInfo => new NodeDeactivationResultWrapper(Item.NodeDeactivationInfo);
+        public INodeDeactivationResult NodeDeactivationInfo => Item.NodeDeactivationInfo == null ? null : new NodeDeactivationResultWrapper(Item.NodeDeactivationInfo);
 
         /// <inheritdoc />
         public bool IsStopped => Item.IsStopped;

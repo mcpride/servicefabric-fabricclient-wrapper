@@ -46,7 +46,7 @@ namespace MS.Extensions.Fabric
         ///<inheritdoc/>
         public async Task<INameEnumerationResult> EnumerateSubNamesAsync(Uri name, INameEnumerationResult previousResult, bool recursive)
         {
-            return !previousResult.TryUnwrap<INameEnumerationResult, NameEnumerationResultWrapper>(out var previousResultInt) 
+            return !previousResult.TryUnwrapTo<NameEnumerationResultWrapper>(out var previousResultInt) 
                 ? new NameEnumerationResultWrapper(null) 
                 : new NameEnumerationResultWrapper(
                     await _client.EnumerateSubNamesAsync(name, previousResultInt?.Result, recursive));
@@ -56,7 +56,7 @@ namespace MS.Extensions.Fabric
         public async Task<INameEnumerationResult> EnumerateSubNamesAsync(Uri name, INameEnumerationResult previousResult, bool recursive,
             TimeSpan timeout, CancellationToken cancellationToken)
         {
-            return !previousResult.TryUnwrap<INameEnumerationResult, NameEnumerationResultWrapper>(out var previousResultInt)
+            return !previousResult.TryUnwrapTo<NameEnumerationResultWrapper>(out var previousResultInt)
                 ? new NameEnumerationResultWrapper(null)
                 : new NameEnumerationResultWrapper(
                     await _client

@@ -19,7 +19,7 @@ namespace MS.Extensions.Fabric.Query
         public IPartition this[int index]
         {
             get => new PartitionWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<IPartition, PartitionWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<PartitionWrapper>().Item;
         }
 
         /// <inheritdoc />
@@ -58,7 +58,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(IPartition item)
         {
-            _items.Add(item.Unwrap<IPartition, PartitionWrapper>().Item);
+            _items.Add(item.UnwrapTo<PartitionWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -70,13 +70,13 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(IPartition item)
         {
-            return _items.Contains(item.Unwrap<IPartition, PartitionWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<PartitionWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(IPartition[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => item.Unwrap<IPartition, PartitionWrapper>()
+            _items.CopyTo(array.Select(item => item.UnwrapTo<PartitionWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -84,19 +84,19 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(IPartition item)
         {
-            return _items.Remove(item.Unwrap<IPartition, PartitionWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<PartitionWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(IPartition item)
         {
-            return _items.IndexOf(item.Unwrap<IPartition, PartitionWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<PartitionWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, IPartition item)
         {
-            _items.Insert(index, item.Unwrap<IPartition, PartitionWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<PartitionWrapper>().Item);
         }
 
         /// <inheritdoc />

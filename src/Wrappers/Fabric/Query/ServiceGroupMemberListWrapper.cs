@@ -25,7 +25,7 @@ namespace MS.Extensions.Fabric.Query
         public IServiceGroupMember this[int index]
         {
             get => new ServiceGroupMemberWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<ServiceGroupMemberWrapper>().Item;
         }
 
         public ServiceGroupMemberListWrapper(ServiceGroupMemberList items)
@@ -51,7 +51,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(IServiceGroupMember item)
         {
-            _items.Add(item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item);
+            _items.Add(item.UnwrapTo<ServiceGroupMemberWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -63,13 +63,13 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(IServiceGroupMember item)
         {
-            return _items.Contains(item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<ServiceGroupMemberWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(IServiceGroupMember[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>()
+            _items.CopyTo(array.Select(item => item.UnwrapTo<ServiceGroupMemberWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -77,19 +77,19 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(IServiceGroupMember item)
         {
-            return _items.Remove(item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<ServiceGroupMemberWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(IServiceGroupMember item)
         {
-            return _items.IndexOf(item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<ServiceGroupMemberWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, IServiceGroupMember item)
         {
-            _items.Insert(index, item.Unwrap<IServiceGroupMember, ServiceGroupMemberWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<ServiceGroupMemberWrapper>().Item);
         }
 
         /// <inheritdoc />

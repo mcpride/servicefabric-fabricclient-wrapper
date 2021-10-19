@@ -71,7 +71,7 @@ namespace MS.Extensions.Fabric
 
         private static NamedProperty Unwrap(INamedProperty item)
         {
-            var wrapper = item.Unwrap<INamedProperty, NamedPropertyWrapper>();
+            var wrapper = item.UnwrapTo<NamedPropertyWrapper>();
             return wrapper.Item;
         }
     }

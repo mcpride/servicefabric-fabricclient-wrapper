@@ -19,7 +19,7 @@ namespace MS.Extensions.Fabric.Query
         public IApplicationType this[int index]
         {
             get => new ApplicationTypeWrapper(_items[index]);
-            set => _items[index] = value.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item;
+            set => _items[index] = value.UnwrapTo<ApplicationTypeWrapper>().Item;
         }
 
         /// <inheritdoc />
@@ -58,7 +58,7 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public void Add(IApplicationType item)
         {
-            _items.Add(item.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item);
+            _items.Add(item.UnwrapTo<ApplicationTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
@@ -70,13 +70,13 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Contains(IApplicationType item)
         {
-            return _items.Contains(item.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item);
+            return _items.Contains(item.UnwrapTo<ApplicationTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void CopyTo(IApplicationType[] array, int arrayIndex)
         {
-            _items.CopyTo(array.Select(item => item.Unwrap<IApplicationType, ApplicationTypeWrapper>()
+            _items.CopyTo(array.Select(item => item.UnwrapTo<ApplicationTypeWrapper>()
                     .Item).ToArray(),
                 arrayIndex);
         }
@@ -84,19 +84,19 @@ namespace MS.Extensions.Fabric.Query
         /// <inheritdoc />
         public bool Remove(IApplicationType item)
         {
-            return _items.Remove(item.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item);
+            return _items.Remove(item.UnwrapTo<ApplicationTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public int IndexOf(IApplicationType item)
         {
-            return _items.IndexOf(item.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item);
+            return _items.IndexOf(item.UnwrapTo<ApplicationTypeWrapper>().Item);
         }
 
         /// <inheritdoc />
         public void Insert(int index, IApplicationType item)
         {
-            _items.Insert(index, item.Unwrap<IApplicationType, ApplicationTypeWrapper>().Item);
+            _items.Insert(index, item.UnwrapTo<ApplicationTypeWrapper>().Item);
         }
 
         /// <inheritdoc />

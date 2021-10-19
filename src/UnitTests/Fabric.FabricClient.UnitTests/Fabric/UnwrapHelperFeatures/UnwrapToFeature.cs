@@ -1,5 +1,6 @@
 ﻿using System;
 using Xunit;
+using MS.Extensions.Tools;
 
 namespace MS.Extensions.Fabric.UnwrapHelperFeatures
 {
@@ -28,13 +29,21 @@ namespace MS.Extensions.Fabric.UnwrapHelperFeatures
         }
     }
 
-    public class UnwrapFeature
+    internal class InvalidType2 : IWrap
+    {
+        public void Test()
+        {
+            //do nothing
+        }
+    }
+
+    public class UnwrapToFeature
     {
         [Fact]
         public void Interfaces_should_be_unwrapped_to_implementation_types()
         {
             IWrap wrapped = new ValidType();
-            var unwrapped = wrapped.Unwrap<IWrap, ValidType>();
+            var unwrapped = wrapped.UnwrapTo<ValidType>();
             Assert.IsType<ValidType>(unwrapped);
         }
 
@@ -42,7 +51,7 @@ namespace MS.Extensions.Fabric.UnwrapHelperFeatures
         public void Interfaces_should_be_unwrapped_to_base_types()
         {
             IWrap wrapped = new ValidType();
-            var unwrapped = wrapped.Unwrap<IWrap, BaseType>();
+            var unwrapped = wrapped.UnwrapTo<BaseType>();
             Assert.IsAssignableFrom<BaseType>(unwrapped);
         }
 
@@ -50,7 +59,22 @@ namespace MS.Extensions.Fabric.UnwrapHelperFeatures
         public void Unwrapping_invalid_types_should_should_throw_InvalidOperationException()
         {
             IWrap wrapped = new ValidType();
-            Assert.Throws<InvalidOperationException>(() => wrapped.Unwrap<IWrap, InvalidType>());
+            Assert.Throws<InvalidOperationException>(() => wrapped.UnwrapTo<InvalidType>());
+        }
+
+        [Fact]
+        public void Unwrapping_invalid_types_2_should_should_throw_InvalidOperationException()
+        {
+            IWrap wrapped = new ValidType();
+            Assert.Throws<InvalidOperationException>(() => wrapped.UnwrapTo<InvalidType2>());
+        }
+
+        [Fact]
+        public void Null_values_should_be_unwrapped_to_base_types()
+        {
+            IWrap wrapped = null;
+            var unwrapped = wrapped.UnwrapTo<BaseType>();
+            Assert.Null(unwrapped);
         }
     }
 }
